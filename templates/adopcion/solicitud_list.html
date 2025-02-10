@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if object_list %}
+    <h1>Listado de Solicitudes</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>No. Solicitud</td>
+                <td>Adoptante</td>
+                <td>No. mascotas</td>
+                <td>Razones</td>
+                <td>Acciones</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for s in object_list %}
+                <tr>
+                    <td>{{ s.id }}</td>
+                    <td>{{ s.persona.nombre }} {{ s.persona.apellidos }}</td>
+                    <td>{{ s.numero_mascotas }}</td>
+                    <td>{{ s.razones }}</td>
+
+
+                    <td>
+                        <a class=" btn btn-warning" href="{% url 'adopcion:solicitud_ver' s.id %}">Ver (class)</a>
+                        <a class=" btn btn-primary" href="{% url 'adopcion:solicitud_edit' s.id %}">Editar (class)</a>
+                        <a class="btn btn-danger" href="{% url 'adopcion:solicitud_del' s.id %}">ELiminar (class)</a>
+                        <br><br>
+                        <a class=" btn btn-warning" href="{% url 'adopcion:solicitud_view_ver' s.id %}">Ver (view)</a>
+                        <a class=" btn btn-primary" href="{% url 'adopcion:solicitud_view_edit' s.id %}">Editar (view)</a>
+                        <a class="btn btn-danger" href="{% url 'adopcion:solicitud_view_del' s.id %}">ELiminar (view)</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h1>No hay solicitudes registradas</h1>
+    {% endif %}
+{% endblock %}

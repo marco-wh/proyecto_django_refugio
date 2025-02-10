@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if personas %}
+    <h1>Listado de Personas</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Nombre completo</td>
+                <td>Edad</td>
+                <td>Teléfono</td>
+                <td>Email</td>
+                <td>Domicilio</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for p in personas %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td>{{ p.nombre }} {{ p.apellidos }}</td>
+                    <td>{{ p.edad }}</td>
+                    <td>{{ p.telefono }}</td>
+                    <td>{{ p.email }}</td>
+                    <td>{{ p.domicilio }}</td>
+
+                    <td>
+                        <a class=" btn btn-warning" href="{% url 'adopcion:persona_ver' p.id %}">Ver (class)</a>
+                        <a class=" btn btn-primary" href="{% url 'adopcion:persona_edit' p.id %}">Editar (class)</a>
+                        <a class="btn btn-danger" href="{% url 'adopcion:persona_del' p.id %}">ELiminar (class)</a>
+                        <br><br>
+                        <a class=" btn btn-warning" href="{% url 'adopcion:persona_view_ver' p.id %}">Ver (view)</a>
+                        <a class=" btn btn-primary" href="{% url 'adopcion:persona_view_edit' p.id %}">Editar (view)</a>
+                        <a class="btn btn-danger" href="{% url 'adopcion:persona_view_del' p.id %}">ELiminar (view)</a>
+                    </td>
+                </tr>
+            {% endfor %}
+         </tbody>
+    </table>
+    {% else %}
+        <h1>No hay personas registradas</h1>
+    {% endif %}
+{% endblock %}

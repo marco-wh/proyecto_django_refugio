@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="col-3">
+        <img src="{% if object.imagen %}{{ object.imagen.url }}{% endif %}" width="200" height="200">
+    </div>
+
+    <div class="col">
+        <h1>Nombre: {{ object.nombre }}</h1>
+        <h2>Edad: {{ object.edad }}</h2>
+        <h2>Sexo: {{ object.sexo }}</h2>
+        <h2>Adoptante: {{ object.persona.nombre }} {{ object.persona.apellidos }}</h2>
+
+        {% if object.vacuna.all %}
+            <h2>Vacunas aplicadas:</h2>
+            {% for v in object.vacuna.all %}
+                <h2> * {{ v }}</h2>
+            {% endfor %}
+        {% else %}
+            <h2>Sin vacunas aplicadas</h2>
+        {% endif %}
+
+    </div>
+
+
+{% endblock %}

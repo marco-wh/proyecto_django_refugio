@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    {% if object_list %}
+    <h1>Listado de Mascotas</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Foto</td>
+                <td>Nombre</td>
+                <td>Sexo</td>
+                <td>Edad</td>
+                <td>Fecha de rescate</td>
+                <td>Adoptante</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for m in object_list %}
+                <tr>
+                    <td>{{ m.id }}</td>
+                    <td><img src="{% if m.imagen %}{{ m.imagen.url }}{% endif %}" width="50" height="50"></td>
+                    <td>{{ m.nombre }}</td>
+                    <td>{{ m.sexo }}</td>
+                    <td>{{ m.edad }}</td>
+                    <td>{{ m.fecha_rescate }}</td>
+                    <td>{{ m.persona.nombre }} {{ m.persona.apellidos }}</td>
+
+                    <td>
+                        <a class="btn btn-warning"  href="{% url 'mascota:mascota_view_ver' m.id %}">Ver (view)</a>
+                        <a class="btn btn-primary"  href="{% url 'mascota:mascota_view_edit' m.id %}">Editar (view)</a>
+                        <a class="btn btn-danger"  href="{% url 'mascota:mascota_view_del' m.id %}">Eliminar (view )</a>
+                        <br><br>
+                        <a class="btn btn-warning"  href="{% url 'mascota:mascota_ver' m.id %}">Ver (class)</a>
+                        <a class="btn btn-primary"  href="{% url 'mascota:mascota_edit' m.id %}">Editar (class)</a>
+                        <a class="btn btn-danger"  href="{% url 'mascota:mascota_del' m.id %}">Eliminar (class)</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h1>No hay mascotas registradas</h1>
+    {% endif %}
+{% endblock %}

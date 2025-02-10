@@ -1,0 +1,11 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="col">
+        <h1>Información de Solicitud</h1>
+
+        <h2>Solicitante: {{ solicitud.persona.nombre }} {{ solicitud.persona.apellidos }}</h2>
+        <h2>Mascotas solicitadas: {{ solicitud.numero_mascotas }}</h2>
+        <h2>Razones de la solicitud: {{ solicitud.razones }}</h2>
+    </div>
+{% endblock %}

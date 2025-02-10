@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="col">
+        <h1>Editar Persona</h1>
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Editar">
+        </form>
+    </div>
+{% endblock %}

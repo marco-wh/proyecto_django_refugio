@@ -1,0 +1,13 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="col">
+        <h1>Información de Solicitante</h1>
+
+        <h3>Nombre: {{ persona.nombre }} {{ persona.apellidos }}</h3>
+        <h3>Edad: {{ persona.edad }}</h3>
+        <h3>Telefono: {{ persona.telefono }}</h3>
+        <h3>Email: {{ persona.email }}</h3>
+        <h3>Domicilio: {{ persona.domicilio }}</h3>
+    </div>
+{% endblock %}
